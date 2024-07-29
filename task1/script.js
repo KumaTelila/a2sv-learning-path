@@ -1,8 +1,11 @@
 
+// get html elements
 const taskInput = document.getElementById("task");
 const takssList = document.getElementById("tasksList");
 
-window.addTask = function () {
+
+// add tasks 
+const addTask =  () => {
     const taskValue = taskInput.value.trim();
     if (taskValue) {
         const li = document.createElement("li");
@@ -14,7 +17,6 @@ window.addTask = function () {
         });
         takssList.appendChild(li);
         li.appendChild(span);
-
         taskInput.value = '';
     }
 };
