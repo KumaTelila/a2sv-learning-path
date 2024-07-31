@@ -41,7 +41,7 @@ function renderPage() {
         buttonEdit.onclick = () => editTask(todo.id);
         const div = document.createElement('div');
         div.className = 'd-flex justify-content-between align-items-center';
-        div.appendChild(document.createTextNode(todo.id + ': ' + todo.title));
+        div.appendChild(document.createTextNode(todo.title));
         div.appendChild(buttonEdit);
         div.appendChild(buttonDelete);
         li.appendChild(div);

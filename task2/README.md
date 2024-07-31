@@ -31,3 +31,9 @@ A simple to-do list application built with TypeScript.
 - Edit tasks
 - Delete tasks
 
+# Demo Images
+
+![alt text](demo-image/Screenshot%20from%202024-07-30%2015-11-15.png)
+![alt text](demo-image/Screenshot%20from%202024-07-30%2015-12-04.png)
+![alt text](demo-image/Screenshot%20from%202024-07-30%2015-12-23.png)
+![alt text](demo-image/Screenshot%20from%202024-07-30%2015-12-35.png)
