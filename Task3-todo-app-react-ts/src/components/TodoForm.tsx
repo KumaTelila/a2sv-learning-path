@@ -31,7 +31,7 @@ const TodoForm: React.FC<PropsType> = ({ setTodos }) => {
             className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
-            // autoFocus={true}
+            autoFocus={true}
           />
         </div>
         <button onClick={handleSubmit} type="submit" className="btn btn-primary">
