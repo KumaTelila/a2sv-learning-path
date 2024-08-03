@@ -1,7 +1,7 @@
 import React from 'react'
 import { RiArrowDropDownLine } from 'react-icons/ri'
 
-const Header = () => {
+const Header = ({number_of_jobs}: {number_of_jobs: number}) => {
     return (
         <div className="flex justify-between">
             <div className="flex flex-col gap-1">
@@ -9,7 +9,7 @@ const Header = () => {
                     <h1>Opportunities</h1>
                 </div>
                 <div className='text-base font-Epilogue text-[#7C8493]'>
-                    <h3>Showing 73 results</h3>
+                    <h3>Showing {number_of_jobs} results</h3>
                 </div>
             </div>
             <div className="flex gap-5">
