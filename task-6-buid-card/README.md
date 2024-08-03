@@ -43,9 +43,9 @@ In this task, I created a React component to represent a job card, populated it 
 
 ## Screenshots
 
-![](/demo-image/Screenshot%20from%202024-08-03%2018-22-08.png)
-![](/demo-image/Screenshot%20from%202024-08-03%2018-22-18.png)
-![](/demo-image/Screenshot%20from%202024-08-03%2018-22-28.png)
-![](/demo-image/Screenshot%20from%202024-08-03%2018-22-33.png)
+![](demo-image/Screenshot%20from%202024-08-03%2018-22-08.png)
+![](demo-image/Screenshot%20from%202024-08-03%2018-22-18.png)
+![](demo-image/Screenshot%20from%202024-08-03%2018-22-28.png)
+![](demo-image/Screenshot%20from%202024-08-03%2018-22-33.png)
 
 
