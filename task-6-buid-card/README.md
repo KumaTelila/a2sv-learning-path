@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Job Listing Application
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This repository contains a job listing application built with React and styled using Tailwind CSS. The application includes a job card component and a dashboard to display job listings. This task demonstrates proficiency in React component development, handling static data, and utilizing Tailwind CSS for styling.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Task 6: Build Job Card
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+In this task, I created a React component to represent a job card, populated it with dummy data, and styled it according to the provided design. Additionally, I developed the Job Listing Dashboard based on the given Figma file.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Job Card Component:** A responsive card displaying job information including the job title, description, and an avatar image.
+- **Dashboard:** A page showcasing multiple job cards in a dashboard layout.
+- **Tailwind CSS Styling:** Applied Tailwind CSS classes to ensure the card and dashboard match the design specifications.
 
-## Learn More
+## Setup
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/KumaTelila/a2sv-learning-path.git
+   cd a2sv-learning-path
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Navigate to the Task Path:**
+   ```bash
+   cd task-6-build-card
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
 
-## Deploy on Vercel
+4. **Run the Application:**
+   ```bash
+   npm start
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   Open your browser and navigate to `http://localhost:3000` to view the application.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+## Screenshots
+
+![](/demo-image/Screenshot%20from%202024-08-03%2018-22-08.png)
+![](/demo-image/Screenshot%20from%202024-08-03%2018-22-18.png)
+![](/demo-image/Screenshot%20from%202024-08-03%2018-22-28.png)
+![](/demo-image/Screenshot%20from%202024-08-03%2018-22-33.png)
+
+
