@@ -1,18 +1,16 @@
-import { AuthOptions, getServerSession } from "next-auth";
+import NextAuth from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
 
-const authOptions: AuthOptions = {
-providers: [
-    GithubProvider({
-        clientId: process.env.GITHUB_ID,
-        clientSecret: process.env.GITHUB_SECRET
-    }),
+export const {
+  handlers: { GET, POST },
+  auth,
+  SignIn,
+  SignOut,
+} = NextAuth({
+  providers: [
     GoogleProvider({
-        clientId: process.env.GOOGLE_ID,
-        clientSecret: process.env.GOOGLE_SECRET
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
-]
-}
-
-const getSession = () => getServerSession(authOptions)
-
-export { authOptions, getSession }
+  ],
+});
