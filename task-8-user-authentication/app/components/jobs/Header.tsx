@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { RiArrowDropDownLine } from "react-icons/ri";
 
@@ -25,6 +26,10 @@ const Header = ({ number_of_jobs }: { number_of_jobs: number }) => {
             </select>
           </div>
         </div>
+      <div className="flex gap-5">
+        <Link className="text-base font-Epilogue text-[#7C8493]" href={"/auth/login"}>Sign In</Link>
+        <Link className="text-base font-Epilogue text-[#7C8493]" href={"/auth/register"}>Sign Up</Link>
+      </div>
       </div>
     </div>
   );
