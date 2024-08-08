@@ -5,7 +5,8 @@ import Button from "./Button";
 import HaveAccountFooter from "./HaveAccountFooter";
 import FooterTerms from "./FooterTerms";
 import SignInOrUpWithGoogle from "./SignInOrUpWithGoogle";
-import { useForm, FieldErrors } from "react-hook-form";
+import { useForm, FieldErrors } from "react-hook-form"; 
+import { redirect, useRouter } from 'next/navigation'
 
 interface FormData {
   name: string;
@@ -15,25 +16,47 @@ interface FormData {
 }
 
 const Register = () => {
-// validate form
-const form = useForm<FormData>({
-  defaultValues: {
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  },
-  mode: "all",
-});
 
-const {register, handleSubmit, formState} = form;
-const {errors, isSubmitting, isSubmitSuccessful} = formState;
+  const router = useRouter()
+  // validate form
+  const form = useForm<FormData>({
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    mode: "all",
+  });
 
-// handle form submission
-const onSubmit = (data: FormData) => {
-  console.log(data);
-};
+  const { register, handleSubmit, formState } = form;
+  const { errors, isSubmitting, isSubmitSuccessful } = formState;
 
+  // handle form submission
+  const onSubmit = async (data: FormData) => {
+    if (data.password !== data.confirmPassword) {
+      console.log("Passwords do not match");
+      return;
+    }
+    const res = await fetch("https://akil-backend.onrender.com/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const user  = await res.json();
+
+    if (res.ok && user) {
+      router.push('/auth/verify')
+      console.log("User created successfully");
+
+    } else {
+      console.log("Error creating user");
+    }
+    console.log(data);
+  };
 
   return (
     <div className="flex flex-col gap-6 pt-6 pb-24 px-8 mx-auto my-auto max-w-lg bg-white ">
@@ -99,7 +122,9 @@ const onSubmit = (data: FormData) => {
                 className="input input-bordered w-full border-[#D6DDEB]"
                 type="password"
                 placeholder="Confirm password"
-                {...register("confirmPassword", { required: "Password is required" })}
+                {...register("confirmPassword", {
+                  required: "Password is required",
+                })}
               />
               <p className="text-red-600">{errors.confirmPassword?.message}</p>
             </div>

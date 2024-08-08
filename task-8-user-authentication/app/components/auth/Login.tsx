@@ -8,6 +8,7 @@ import HaveAccountFooter from "./HaveAccountFooter";
 import FooterTerms from "./FooterTerms";
 import SignInOrUpWithGoogle from "./SignInOrUpWithGoogle";
 import { useForm, FieldErrors } from "react-hook-form";
+import { signIn } from "next-auth/react";
 
 interface FormData {
   email: string;
@@ -31,8 +32,16 @@ const Login = () => {
     formState;
 
   // handle form submission
-  const onSubmit = (data: FormData) => {
-    console.log(data);
+  const onSubmit = async (data: FormData) => {
+    const res = await signIn("credentials", {
+      email: data.email,
+      password: data.password,
+      redirect: true,
+      callbackUrl: "/",
+    })
+
+    console.log(res)
+  
   };
 
   // handle google sign in

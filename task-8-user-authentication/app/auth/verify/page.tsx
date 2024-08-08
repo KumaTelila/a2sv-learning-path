@@ -1,9 +1,11 @@
-import Otp from '@/app/components/auth/Otp'
+import  Verify  from '@/app/components/auth/Verify'
 import React from 'react'
 
 const VerifyPage = () => {
   return (
-    <Otp/>
+    <Verify/>
+
+
   )
 }
 
