@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/input-otp";
 import HeaderTitle from "./HeaderTitle";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 // import { toast } from "@/components/ui/use-toast"
 
 const FormSchema = z.object({
@@ -37,16 +38,55 @@ export default function Verify() {
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    // toast({
-    //   title: "You submitted the following values:",
-    //   description: (
-    //     <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-    //       <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-    //     </pre>
-    //   ),
-    // })
-  }
+  // function onSubmit(data: z.infer<typeof FormSchema>) {
+  //   toast({
+  //     title: "You submitted the following values:",
+  //     description: (
+  //       <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+  //         <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+  //       </pre>
+  //     ),
+  //   })
+    
+  // }
+  const getUrl = window.location.href;
+  const url = new URL(getUrl);
+  const getEmail = url.searchParams.get("email");
+
+  const router = useRouter(); 
+  const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+    const email = getEmail; 
+  
+    try {
+      const res = await fetch("https://akil-backend.onrender.com/verify-email", { 
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          OTP: data.pin, 
+          email: email,  
+        }),
+      });
+  
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`); 
+      }
+  
+      const user = await res.json();
+  
+      if (user) {
+        console.log("User verified successfully");
+        router.push("/auth/login"); 
+      } else {
+        console.log("Error verifying user");
+      }
+    } catch (error) {
+      console.error("Error occurred during verification:", error);
+    }
+  
+    console.log(data);
+  };
 
   return (
     <div className="flex flex-col gap-6 pt-24 pb-24 px-8 mx-auto my-auto max-w-lg bg-white rounded-lg shadow-md">

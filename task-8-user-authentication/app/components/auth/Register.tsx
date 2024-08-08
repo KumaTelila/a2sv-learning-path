@@ -49,7 +49,7 @@ const Register = () => {
     const user  = await res.json();
 
     if (res.ok && user) {
-      router.push('/auth/verify')
+      router.push(`/auth/verify?email=${data.email}`)
       console.log("User created successfully");
 
     } else {
