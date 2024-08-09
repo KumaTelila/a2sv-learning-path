@@ -64,7 +64,7 @@ This task involves implementing user authentication in your application using Ne
    cd task-8-user-authentication
    ```
 
-   ** add your GOOGLE_ID and GOOGLE_SECRET in .env file
+Add your GOOGLE_ID and GOOGLE_SECRET in .env file
 
 3. **Install Dependencies:**
    ```bash
