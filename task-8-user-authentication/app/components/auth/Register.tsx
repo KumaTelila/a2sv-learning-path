@@ -5,8 +5,9 @@ import Button from "./Button";
 import HaveAccountFooter from "./HaveAccountFooter";
 import FooterTerms from "./FooterTerms";
 import SignInOrUpWithGoogle from "./SignInOrUpWithGoogle";
-import { useForm, FieldErrors } from "react-hook-form"; 
-import { redirect, useRouter } from 'next/navigation'
+import { useForm, FieldErrors } from "react-hook-form";
+import { redirect, useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 interface FormData {
   name: string;
@@ -16,8 +17,7 @@ interface FormData {
 }
 
 const Register = () => {
-
-  const router = useRouter()
+  const router = useRouter();
   // validate form
   const form = useForm<FormData>({
     defaultValues: {
@@ -35,7 +35,11 @@ const Register = () => {
   // handle form submission
   const onSubmit = async (data: FormData) => {
     if (data.password !== data.confirmPassword) {
-      console.log("Passwords do not match");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Passwords do not match!",
+      })
       return;
     }
     const res = await fetch("https://akil-backend.onrender.com/signup", {
@@ -46,13 +50,14 @@ const Register = () => {
       body: JSON.stringify(data),
     });
 
-    const user  = await res.json();
+    const user = await res.json();
 
     if (res.ok && user) {
-      router.push(`/auth/verify?email=${data.email}`)
+      Swal.fire("Success", "User created successfully got verify your eamil", "success");
+      router.push(`/auth/verify?email=${data.email}`);
       console.log("User created successfully");
-
     } else {
+      Swal.fire("Error", "Error creating user", "error");
       console.log("Error creating user");
     }
     console.log(data);

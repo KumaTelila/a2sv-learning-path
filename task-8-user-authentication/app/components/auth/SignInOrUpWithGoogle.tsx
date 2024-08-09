@@ -1,10 +1,13 @@
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
+import {signIn } from "next-auth/react";
 
 const SignInOrUpWithGoogle = ({title}: {title: string}) => {
   return (
     <>
-      <button className="btn bg-white gap-[10px] justify-items-center">
+      <button className="btn bg-white gap-[10px] justify-items-center"
+      onClick={() => signIn("google", { callbackUrl: "/" })}
+      >
         <FcGoogle size={25} />
         <h3 className={`font-bold font-Epilogue text-[16px] text-[#4640DE]`}>
           {title} with Google

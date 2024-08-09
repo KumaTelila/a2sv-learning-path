@@ -3,6 +3,7 @@ import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { apiBaseUrl } from 'next-auth/client/_utils';
 
 export const options: NextAuthOptions = {
     providers: [
@@ -48,22 +49,22 @@ export const options: NextAuthOptions = {
                 }
             },
         }),
-        GitHubProvider({
-            clientId: process.env.GITHUB_ID as string,
-            clientSecret: process.env.GITHUB_SECRET as string,
-        }),
         GoogleProvider({
             clientId: process.env.GOOGLE_ID as string,
             clientSecret: process.env.GOOGLE_SECRET as string,
         }),
     ],
     callbacks: {
-        async redirect({url, baseUrl }) {
-            // Redirect to home page after login
-            return baseUrl;
-        } 
+      
+
     },
     session: {
         strategy: "jwt",
-    }  
+    }  ,
+    pages: {
+        signIn: "/auth/login",
+        newUser: "/auth/register",
+        error: "/auth/login",
+        signOut: "/auth/login",
+    }
 };

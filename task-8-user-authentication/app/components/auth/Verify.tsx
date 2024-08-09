@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
+import Swal from "sweetalert2";
 import {
   Form,
   FormControl,
@@ -76,16 +77,18 @@ export default function Verify() {
       const user = await res.json();
   
       if (user) {
+        Swal.fire("Success", "Email verified successfully", "success");
         console.log("User verified successfully");
         router.push("/auth/login"); 
       } else {
+        Swal.fire("Error", "Invalid OTP", "error");
         console.log("Error verifying user");
       }
     } catch (error) {
+
       console.error("Error occurred during verification:", error);
     }
   
-    console.log(data);
   };
 
   return (

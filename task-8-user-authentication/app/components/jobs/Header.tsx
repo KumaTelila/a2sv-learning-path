@@ -3,10 +3,11 @@ import Link from "next/link";
 import React from "react";
 import { MdLogout } from "react-icons/md";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import { getServerSession } from "next-auth";
 
 const Header = ({ number_of_jobs }: { number_of_jobs: number }) => {
   const { data: session } = useSession();
-
+  
   return (
     <div className="flex justify-between">
       <div className="flex flex-col gap-1">
@@ -38,7 +39,7 @@ const Header = ({ number_of_jobs }: { number_of_jobs: number }) => {
               </div>
               <div>
                 <button
-                  onClick={() => signOut()}
+                  onClick={() => signOut({callbackUrl: "/auth/login"})}
                   className="text-base font-Epilogue text-[#7C8493]"
                 >
                   Sign Out
