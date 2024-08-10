@@ -9,6 +9,8 @@ import FooterTerms from "./FooterTerms";
 import SignInOrUpWithGoogle from "./SignInOrUpWithGoogle";
 import { useForm, FieldErrors } from "react-hook-form";
 import { signIn } from "next-auth/react";
+import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 interface FormData {
   email: string;
@@ -16,6 +18,7 @@ interface FormData {
 }
 
 const Login = () => {
+  const router  = useRouter()
   // validate form
   const form = useForm<FormData>({
     defaultValues: {
@@ -33,14 +36,32 @@ const Login = () => {
 
   // handle form submission
   const onSubmit = async (data: FormData) => {
-    const res = await signIn("credentials", {
-      email: data.email,
-      password: data.password,
-      redirect: true,
-      callbackUrl: "/",
-    })
+    try {   
+      const res = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: true,
+        callbackUrl: "/",
+      })
+      console.log("this is response from serveer===>", res)
+      if (!res?.ok) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: res?.error || "Invalid email or password",
+        })
+        router.push("/")
+        return
+      } 
+    } catch (error: Error | any) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message || "Error logging in",
+      })
+      
+    }
 
-    console.log(res)
   
   };
 

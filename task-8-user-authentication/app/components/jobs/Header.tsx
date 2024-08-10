@@ -7,6 +7,7 @@ import { getServerSession } from "next-auth";
 
 const Header = ({ number_of_jobs }: { number_of_jobs: number }) => {
   const { data: session } = useSession();
+  console.log(session)
   
   return (
     <div className="flex justify-between">
@@ -18,7 +19,7 @@ const Header = ({ number_of_jobs }: { number_of_jobs: number }) => {
           <h3>Showing {number_of_jobs} results</h3>
         </div>
       </div>
-      <div className="flex gap-5">
+      <div className="flex  gap-5">
         <div className="text-base font-Epilogue text-[#7C8493]">
           <h3>Sort by:</h3>
         </div>

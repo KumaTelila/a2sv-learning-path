@@ -7,7 +7,6 @@ import Description from "./components/jobs/Description";
 // import { Jobs } from "./interface/interfaces";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
-import Otp from "./components/auth/Otp";
 import { SessionProvider } from "next-auth/react";
 
 export default function Home({session}: {session: any}) {

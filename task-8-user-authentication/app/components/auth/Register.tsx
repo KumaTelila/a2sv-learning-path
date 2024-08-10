@@ -60,7 +60,6 @@ const Register = () => {
       Swal.fire("Error", "Error creating user", "error");
       console.log("Error creating user");
     }
-    console.log(data);
   };
 
   return (
