@@ -4,11 +4,12 @@ import React from "react";
 import { MdLogout } from "react-icons/md";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { getServerSession } from "next-auth";
+import { FcBookmark } from "react-icons/fc";
 
 const Header = ({ number_of_jobs }: { number_of_jobs: number }) => {
   const { data: session } = useSession();
-  console.log(session)
-  
+  console.log(session);
+
   return (
     <div className="flex justify-between">
       <div className="flex flex-col gap-1">
@@ -34,17 +35,25 @@ const Header = ({ number_of_jobs }: { number_of_jobs: number }) => {
         </div>
         <div className="flex gap-5">
           {session && session.user ? (
-            <div className="flex gap-2">
+            <div className="flex gap-4">
+              <Link
+                className="text-base font-Epilogue text-[#7C8493] gap-2"
+                href={"/saved-jobs"}
+              >
+                Saved Jobs
+              </Link>
+              <div className="flex gap-2">
               <div className="pt-1">
                 <MdLogout />
               </div>
               <div>
                 <button
-                  onClick={() => signOut({callbackUrl: "/auth/login"})}
+                  onClick={() => signOut({ callbackUrl: "/auth/login" })}
                   className="text-base font-Epilogue text-[#7C8493]"
                 >
                   Sign Out
                 </button>
+              </div>
               </div>
             </div>
           ) : (

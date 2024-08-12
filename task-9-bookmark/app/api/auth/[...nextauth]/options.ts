@@ -80,6 +80,6 @@ export const options: NextAuthOptions = {
     signIn: "/auth/login",
     newUser: "/auth/register",
     error: "/auth/login",
-    signOut: "/auth/login",
+    signOut: "/",
   },
 };
