@@ -7,6 +7,7 @@ import { FaHeart } from "react-icons/fa";
 import { FaBookBookmark, FaRegHeart } from "react-icons/fa6";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { date } from "zod";
 const JobsCard = ({
   id,
   title,
@@ -24,7 +25,40 @@ const JobsCard = ({
   location: string[];
   orgName: string;
 }) => {
-  const { data: session } = useSession();
+  const session = useSession();
+  // console.log("this is from job card =========>", session.data?.user?.email);
+  const handleClick = async () => {
+    const accessToken = session?.data?.accessToken;
+    console.log("this is from job card =========>", session);
+    console.log("this is from job card =========>", accessToken);
+    if (!accessToken) {
+      return;
+
+    }
+    try {
+      const res = await fetch(
+        `https://akil-backend.onrender.com/bookmarks/${id}`,
+
+        {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({}),
+        }
+      );
+
+      if (res.ok) {
+        console.log("job saved");
+      } else {
+        console.log("job not saved");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex gap-6 border px-9 py-6 rounded-2xl">
       <div className="w-20 h-fit px-6">
@@ -41,12 +75,15 @@ const JobsCard = ({
           <Link href={`/description?id=${id}`}>
             <h1 className="text-[#25324B] text-2xl font-bold">{title}</h1>
           </Link>
-          {session && session.user ? (
+          {session && session.data?.user ? (
             <div className="flex gap-2">
               <div className="pt-2">
                 <FaRegHeart color="#7C8493" />
               </div>
-              <button className="text-base font-Epilogue text-[#7C8493]">
+              <button
+                onClick={handleClick}
+                className="text-base font-Epilogue text-[#7C8493]"
+              >
                 Save this job
               </button>
             </div>

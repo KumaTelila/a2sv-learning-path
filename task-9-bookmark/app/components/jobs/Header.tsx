@@ -7,8 +7,8 @@ import { getServerSession } from "next-auth";
 import { FcBookmark } from "react-icons/fc";
 
 const Header = ({ number_of_jobs }: { number_of_jobs: number }) => {
-  const { data: session } = useSession();
-  console.log(session);
+  const  session  = useSession();
+  // console.log(session);
 
   return (
     <div className="flex justify-between">
@@ -34,7 +34,7 @@ const Header = ({ number_of_jobs }: { number_of_jobs: number }) => {
           </div>
         </div>
         <div className="flex gap-5">
-          {session && session.user ? (
+          {session && session.data?.user ? (
             <div className="flex gap-4">
               <Link
                 className="text-base font-Epilogue text-[#7C8493] gap-2"

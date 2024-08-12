@@ -6,6 +6,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { apiBaseUrl } from "next-auth/client/_utils";
 
 export const options: NextAuthOptions = {
+  secret: process.env.AUTH_SECRET,
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -39,7 +40,16 @@ export const options: NextAuthOptions = {
           const user = await res.json();
 
           if (res.ok && user) {
-            return user;
+            console.log("the user it ", user);
+            return {
+              id: user.data.id,
+              email: user.data.email,
+              name: user.data.name,
+              role: user.data.role,
+              profileComplete: user.data.profileComplete,
+              accessToken: user.data.accessToken,
+              refreshToken: user.data.refreshToken,
+            };
           } else {
             return null;
           }
@@ -55,23 +65,30 @@ export const options: NextAuthOptions = {
     }),
   ],
   callbacks: {
-      
-      async signIn({ user, account, profile, email, credentials }) {
-          return true;
-        },
-        async jwt({ token, user }) {
-            if (user) {
-                token = {
-                    ...token,
-                    ...user,
-                };
-            }
-            return token;
-        },
-        async session({ session, token }) {
-          session.user = token;
-          return session;
-        },
+    async signIn({ user, account, profile, email, credentials }) {
+      console.log("this is from sign in", user);
+      return true;
+    },
+    async jwt({ token, user }) {
+      console.log("this is from jwt", user);
+      console.log("this is token form jwt ", token);
+      if (user) {
+        token = {
+          ...token,
+          ...user,
+        };
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      session = {
+        ...session,
+        ...token,
+      };
+      console.log("this is from session", session);
+
+      return session;
+    },
   },
   session: {
     strategy: "jwt",
