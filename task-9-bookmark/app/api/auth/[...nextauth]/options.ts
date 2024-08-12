@@ -66,12 +66,12 @@ export const options: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      console.log("this is from sign in", user);
+      // console.log("this is from sign in", user);
       return true;
     },
     async jwt({ token, user }) {
-      console.log("this is from jwt", user);
-      console.log("this is token form jwt ", token);
+      // console.log("this is from jwt", user);
+      // console.log("this is token form jwt ", token);
       if (user) {
         token = {
           ...token,
@@ -85,7 +85,7 @@ export const options: NextAuthOptions = {
         ...session,
         ...token,
       };
-      console.log("this is from session", session);
+      // console.log("this is from session", session);
 
       return session;
     },
