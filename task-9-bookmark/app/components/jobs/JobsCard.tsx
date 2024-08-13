@@ -17,6 +17,7 @@ const JobsCard = ({
   opType,
   location,
   orgName,
+  categories,
 }: {
   id: string;
   title: string;
@@ -25,6 +26,7 @@ const JobsCard = ({
   opType: string;
   location: string[];
   orgName: string;
+  categories: string[];
 }) => {
   const session = useSession();
   const [saved, setSaved] = React.useState(false);
@@ -176,9 +178,16 @@ const JobsCard = ({
         <p className="text-[#25324B] font-normal text-[16px]">{description}</p>
         {/* labels */}
         <div className="flex gap-2 bordered">
-          <div className="border-2 border-[#56CDAD] rounded-2xl gap-2  text-[#56CDAD]">
-            <h4 className="px-2 ">{opType}</h4>
+          <div className="flex justify-center bg-[#56cdad49] rounded-2xl gap-2  text-[#56CDAD] min-w-24 min-h-8">
+            <h4 className="pt-[6px] font-semibold text-[12px]  ">{opType}</h4>
           </div>
+          <div className="h-[31px] w-[1px]  bg-[#D6DDEB]"></div>
+          {categories.map((category, index) => (
+            <div key={index} className="flex justify-center border-2 border-[#FFB838] rounded-2xl gap-2  text-[#FFB838] min-w-24 min-h-8">
+            <h4 className="pt-[5px] font-semibold text-[12px]  ">{category}</h4>
+          </div>
+          ))}
+          
         </div>
       </div>
     </div>

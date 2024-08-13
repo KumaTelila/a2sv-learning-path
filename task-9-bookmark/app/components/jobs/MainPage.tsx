@@ -32,6 +32,7 @@ const MainPage = () => {
               opType={job.opType}
               location={job.location}
               orgName={job.orgName}
+              categories = {job.categories}
             />
           // </Link>
         ))}
