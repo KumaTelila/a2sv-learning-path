@@ -3,10 +3,14 @@ import React from "react";
 import SavedJobsHeader from "./SavedJobsHeader";
 import JobsCard from "./JobsCard";
 import { JobPosting } from "@/app/interface/interfaces";
-import { useGetAllJobsQuery } from "@/app/lib/features/jobSlice";
+import { useGetBookmarksQuery } from "@/app/lib/features/jobSlice";
+import { useSession } from "next-auth/react";
 
 const SavedJobsLists = () => {
-  const { data, isError, isLoading } = useGetAllJobsQuery();
+  const session = useSession();
+  const accessToken = session.data?.accessToken;
+  const { data, isError, isLoading } = useGetBookmarksQuery(accessToken);
+  console.log(data)
   const jobs: JobPosting[] = data?.data;
   // console.log(jobs)
 
@@ -18,7 +22,7 @@ const SavedJobsLists = () => {
   }
   return (
     <div className="flex flex-col gap-10 pt-[72px] pl-[124px] pr-[123px] pb-[72px]">
-      <SavedJobsHeader/>
+      <SavedJobsHeader number_of_jobs={jobs.length}/>
       <div className="flex flex-col gap-10">
         {jobs.map((job, index) => (
           // <Link key={index} href={`/description?id=${job.id}`}>

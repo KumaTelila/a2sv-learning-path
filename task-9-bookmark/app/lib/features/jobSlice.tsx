@@ -14,7 +14,18 @@ export const jobsApi = createApi({
     getJobById: builder.query({
       query: (id) => `/opportunities/${id}`,
     }),
+    //  get bookmarked jobs
+    getBookmarks: builder.query({
+      query: (accessToken) => ({
+        url: "/bookmarks",
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+    }),
   }),
 });
 
-export const { useGetAllJobsQuery, useGetJobByIdQuery } = jobsApi;
+export const { useGetAllJobsQuery, useGetJobByIdQuery, useGetBookmarksQuery } =
+  jobsApi;
