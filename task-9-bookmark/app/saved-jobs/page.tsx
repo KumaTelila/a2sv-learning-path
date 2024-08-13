@@ -1,10 +1,9 @@
 import React from 'react'
+import SavedJobsLists from '../components/jobs/SavedJobsLists'
 
 const SavedJobs = () => {
   return (
-    <div>SavedJobs
-    
-    </div>
+    <SavedJobsLists/>
   )
 }
 

@@ -1,0 +1,29 @@
+import React from 'react'
+
+const SavedJobsHeader = () => {
+  return (
+    <div className="flex justify-between">
+    <div className="flex flex-col gap-1">
+      <div className="text-[32px] font-Poppins font-black">
+        <h1>Saved Jobs</h1>
+      </div>
+    </div>
+    <div className="flex  gap-5">
+      <div className="text-base font-Epilogue text-[#7C8493]">
+        <h3>Sort by:</h3>
+      </div>
+      <div className="flex gap-2">
+        <div className="text-base font-Epilogue text-[#25324B] font-medium bg-white">
+          <select className="bg-white">
+            <option value="">Most relevant</option>
+            <option value="">Most Oldest</option>
+            <option value="">Most New</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  )
+}
+
+export default SavedJobsHeader

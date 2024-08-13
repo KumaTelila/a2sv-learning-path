@@ -7,7 +7,8 @@ import { getServerSession } from "next-auth";
 import { FcBookmark } from "react-icons/fc";
 
 const Header = ({ number_of_jobs }: { number_of_jobs: number }) => {
-  const  session  = useSession();
+  // const  session  = useSession();
+  const {status, data, update} = useSession();
   // console.log(session);
 
   return (
@@ -34,7 +35,7 @@ const Header = ({ number_of_jobs }: { number_of_jobs: number }) => {
           </div>
         </div>
         <div className="flex gap-5">
-          {session && session.data?.user ? (
+          {status === "authenticated" ? (
             <div className="flex gap-4">
               <Link
                 className="text-base font-Epilogue text-[#7C8493] gap-2"

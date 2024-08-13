@@ -1,4 +1,3 @@
-"use client"
 import Image from "next/image";
 import Link from "next/link";
 import JobsCard from "./components/jobs/JobsCard";
@@ -8,13 +7,12 @@ import Description from "./components/jobs/Description";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import { SessionProvider } from "next-auth/react";
+import SavedJobs from "./saved-jobs/page";
 
-export default function Home({session}: {session: any}) {
+export default function Home() {
   return (
     <main>
-      <SessionProvider session={session}>
         <MainPage />
-      </SessionProvider>
       {/* <h1>Jobs Listing Page</h1> */}
       {/* <Login/> */}
       {/* <Otp/> */}
