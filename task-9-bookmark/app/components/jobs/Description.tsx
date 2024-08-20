@@ -36,7 +36,7 @@ const Description = () => {
   }: JobPosting = data.data;
 
   return (
-    <div className="flex p-8 justify-between">
+    <div className="flex max-md:p-4 p-8 justify-between max-md:flex-col max-md:gap-4">
       <div className="flex flex-col gap-14 w-[75%]">
         <div className="flex flex-col gap-4">
           <div className="text-[24px] font-Poppins font-black">
@@ -93,7 +93,7 @@ const Description = () => {
           </div>
         </div>
       </div>
-      <div className="ml-16 w-[25%] items-center">
+      <div className="ml-16 max-md:ml-0 w-[25%] items-center">
         <div className="flex flex-col gap-5">
           <div className="text-[24px] font-Poppins font-black">
             <h1>About</h1>
@@ -169,13 +169,13 @@ const Description = () => {
               <div className="text-[24px] font-Poppins font-black">
                 <h1>Categories</h1>
               </div>
-              <div className="flex gap-2">
+              <div className="flex gap-2 max-md:flex-col">
                 {categories.map((category, index) => (
                   <div
                     key={index}
-                    className="bg-[#eb86332a] rounded-[80px] gap-2 pl-2 pt-3 pr-2 pb-3"
+                    className="bg-[#eb86332a] rounded-[80px] min-w-36 min-h-8 w-full gap-1"
                   >
-                    <div className="text-sm font-semibold text-[#FFB836] font-Epilogue">
+                    <div className="text-sm font-semibold text-[#FFB836] font-Epilogue max-md:w-fit">
                       <h4>{category}</h4>
                     </div>
                   </div>

@@ -7,7 +7,7 @@ import { JobPosting } from "../../interface/interfaces";
 import { useGetAllJobsQuery } from "../../lib/features/jobSlice";
 
 const MainPage = () => {
-  const { data, isError, isLoading } = useGetAllJobsQuery();
+  const { data, isError, isLoading } = useGetAllJobsQuery('queryKey');
   const jobs: JobPosting[] = data?.data;
   // console.log(jobs)
 
@@ -19,7 +19,7 @@ const MainPage = () => {
   }
 
   return (
-    <div className="flex flex-col gap-10 pt-[72px] pl-[124px] pr-[123px] pb-[72px]">
+    <div className="flex flex-col gap-10 py-16 px-16 max-md:px-3">
       <Header number_of_jobs={jobs.length} />
       <div className="flex flex-col gap-10">
         {jobs.map((job, index) => (

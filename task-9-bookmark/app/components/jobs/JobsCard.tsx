@@ -131,7 +131,7 @@ const JobsCard = ({
   };
 
   return (
-    <div className="flex gap-6 border px-9 py-6 rounded-2xl">
+    <div className="flex max-md:flex-col  gap-6 border px-9 py-6 rounded-2xl max-md:justify-center max-md:items-center">
       <div className="w-20 h-fit px-6">
         <Image
           src={logoUrl ? logoUrl : "/profile.jpg"}
@@ -177,17 +177,21 @@ const JobsCard = ({
         </div>
         <p className="text-[#25324B] font-normal text-[16px]">{description}</p>
         {/* labels */}
-        <div className="flex gap-2 bordered">
+        <div className="flex max-md:flex-col gap-2 bordered">
           <div className="flex justify-center bg-[#56cdad49] rounded-2xl gap-2  text-[#56CDAD] min-w-24 min-h-8">
-            <h4 className="pt-[6px] font-semibold text-[12px]  ">{opType}</h4>
+            <h4 className="p-2 font-semibold text-[12px]  ">{opType}</h4>
           </div>
-          <div className="h-[31px] w-[1px]  bg-[#D6DDEB]"></div>
+          <div className="max-md:hidden h-[31px] w-[1px]  bg-[#D6DDEB]"></div>
           {categories.map((category, index) => (
-            <div key={index} className="flex justify-center border-2 border-[#FFB838] rounded-2xl gap-2  text-[#FFB838] min-w-24 min-h-8">
-            <h4 className="pt-[5px] font-semibold text-[12px]  ">{category}</h4>
-          </div>
+            <div
+              key={index}
+              className="flex max-md:flex-col justify-center text-center border-2 border-[#FFB838] rounded-2xl gap-2  text-[#FFB838] min-w-24 min-h-8"
+            >
+              <h4 className="p-2 font-semibold text-[12px]  ">
+                {category}
+              </h4>
+            </div>
           ))}
-          
         </div>
       </div>
     </div>

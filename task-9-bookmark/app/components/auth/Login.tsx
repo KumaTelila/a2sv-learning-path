@@ -8,7 +8,7 @@ import HaveAccountFooter from "./HaveAccountFooter";
 import FooterTerms from "./FooterTerms";
 import SignInOrUpWithGoogle from "./SignInOrUpWithGoogle";
 import { useForm, FieldErrors } from "react-hook-form";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 
@@ -64,6 +64,12 @@ const Login = () => {
 
   
   };
+
+  // handle if already loged in
+  const {status, data, update} = useSession()
+  if (status === "authenticated") {
+    router.push("/")
+  }
 
   // handle google sign in
 
